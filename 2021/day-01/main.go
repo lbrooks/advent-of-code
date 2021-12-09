@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-func countIncreaseOccurancesBuffer(scanner *bufio.Scanner, numToCount int) int {
+func countIncreaseOccurancesBuffer(scanner *bufio.Scanner, numToCount int) {
 	buffer := make([]int, numToCount)
 	idxToReplace := 0
 	var numIncreases, rowsVisited, prev int
@@ -33,7 +33,8 @@ func countIncreaseOccurancesBuffer(scanner *bufio.Scanner, numToCount int) int {
 		buffer[idxToReplace] = current
 		idxToReplace = (idxToReplace + 1) % numToCount
 	}
-	return numIncreases
+
+	fmt.Printf("Total Increase Count: %d\n", numIncreases)
 }
 
 func main() {
@@ -44,5 +45,11 @@ func main() {
 			log.Fatal(("Could not convert arg to number: " + os.Args[1]))
 		}
 	}
-	fmt.Println("\nTotal Increase Count:", countIncreaseOccurancesBuffer(bufio.NewScanner(os.Stdin), buffer))
+
+	switch buffer {
+	case 1:
+		countIncreaseOccurancesBuffer(bufio.NewScanner(os.Stdin), 1)
+	case 2:
+		countIncreaseOccurancesBuffer(bufio.NewScanner(os.Stdin), 3)
+	}
 }

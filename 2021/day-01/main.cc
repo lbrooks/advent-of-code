@@ -1,12 +1,7 @@
 #include <iostream>
 #include <string>
 
-int main(int argc, char** argv) {
-  int countBack = 1;
-	if (argc > 1) {
-    countBack = std::atoi(argv[1]);
-	}
-
+void process(int countBack) {
   int buffer [countBack];
   memset(buffer, 0, countBack * sizeof(int) );
 
@@ -32,6 +27,20 @@ int main(int argc, char** argv) {
   }
 
   std::cout << std::endl << "Total Increase Count: " << numOfIncreases << std::endl;
+}
+
+int main(int argc, char** argv) {
+  int countBack = 1;
+	if (argc > 1) {
+    countBack = std::atoi(argv[1]);
+	}
+
+  if (countBack == 1) {
+    process(1);
+  } else if (countBack == 2) {
+    process(3);
+  }
+  
   return 0;
 }
 
