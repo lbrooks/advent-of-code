@@ -13,7 +13,7 @@ func playOne(input []string) {
 	fmt.Println("Not Yet Implemented")
 }
 
-func playTwo(intput []string) {
+func playTwo(input []string) {
 	fmt.Println("Not Yet Implemented")
 }
 
@@ -29,13 +29,13 @@ func main() {
 	input := make([]string, 0)
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
-		positions = append(positions, scanner.Text())
+		input = append(input, scanner.Text())
 	}
 
 	switch buffer {
 	case 1:
-		playOne(positions)
+		playOne(input)
 	case 2:
-		playTwo(positions)
+		playTwo(input)
 	}
 }
