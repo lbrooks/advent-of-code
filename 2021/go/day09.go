@@ -1,13 +1,14 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
 	"os"
 	"sort"
 	"strconv"
 	"strings"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
 const (
@@ -173,7 +174,6 @@ func (g *grid) markCenter() {
 }
 
 func (g *grid) countBasins() {
-
 	for r := 1; r < len(g.grid)-1; r++ {
 		for c := 1; c < len(g.grid[r])-1; c++ {
 			num := g.grid[r][c]
@@ -261,11 +261,7 @@ func main() {
 		}
 	}
 
-	input := make([]string, 0)
-	scanner := bufio.NewScanner(os.Stdin)
-	for scanner.Scan() {
-		input = append(input, scanner.Text())
-	}
+	input := utils.ReadPiped()
 
 	switch buffer {
 	case 1:

@@ -1,11 +1,12 @@
 package main
 
 import (
-	"bufio"
 	"log"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
 func round(entry []string, mappings map[string]map[string]string) []string {
@@ -71,7 +72,6 @@ func play(input []string, iterations int) {
 	}
 
 	log.Printf("Max: %d\tMin: %d\tDiff: %d\n", max, min, max-min)
-
 }
 
 func main() {
@@ -83,11 +83,7 @@ func main() {
 		}
 	}
 
-	input := make([]string, 0)
-	scanner := bufio.NewScanner(os.Stdin)
-	for scanner.Scan() {
-		input = append(input, scanner.Text())
-	}
+	input := utils.ReadPiped()
 
 	switch buffer {
 	case 1:

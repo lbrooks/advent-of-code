@@ -1,12 +1,13 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
 func partOne(records [][]string) {
@@ -100,10 +101,10 @@ func main() {
 		}
 	}
 
-	scanner := bufio.NewScanner(os.Stdin)
 	records := make([][]string, 0)
-	for scanner.Scan() {
-		records = append(records, strings.Split(scanner.Text(), ""))
+	input := utils.ReadPiped()
+	for _, l := range input {
+		records = append(records, strings.Split(l, ""))
 	}
 
 	switch buffer {

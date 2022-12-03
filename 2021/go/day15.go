@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"container/heap"
 	"fmt"
 	"log"
@@ -10,6 +9,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
 var distanceInto [][]int
@@ -194,11 +195,7 @@ func main() {
 		}
 	}
 
-	input := make([]string, 0)
-	scanner := bufio.NewScanner(os.Stdin)
-	for scanner.Scan() {
-		input = append(input, scanner.Text())
-	}
+	input := utils.ReadPiped()
 
 	switch buffer {
 	case 1:

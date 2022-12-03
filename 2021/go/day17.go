@@ -1,11 +1,12 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
 	"os"
 	"strconv"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
 type BoundingBox struct {
@@ -95,11 +96,7 @@ func main() {
 		}
 	}
 
-	input := make([]string, 0)
-	scanner := bufio.NewScanner(os.Stdin)
-	for scanner.Scan() {
-		input = append(input, scanner.Text())
-	}
+	input := utils.ReadPiped()
 
 	var xmin, xmax, ymin, ymax int
 	count, err := fmt.Sscanf(input[0], "target area: x=%d..%d, y=%d..%d", &xmin, &xmax, &ymin, &ymax)

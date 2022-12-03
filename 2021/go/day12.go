@@ -1,12 +1,13 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
 type node struct {
@@ -14,15 +15,21 @@ type node struct {
 	paths []*node
 }
 
-var allNodes map[string]*node
-var visited map[string]int
-var path []string
+var (
+	allNodes map[string]*node
+	visited  map[string]int
+	path     []string
+)
 
-var shortestPath string
-var shortestPathNodes int
+var (
+	shortestPath      string
+	shortestPathNodes int
+)
 
-var longestPath string
-var longestPathNodes int
+var (
+	longestPath      string
+	longestPathNodes int
+)
 
 func countPathsToExit(room *node) int {
 	if room.id == "end" {
@@ -148,11 +155,7 @@ func main() {
 		}
 	}
 
-	input := make([]string, 0)
-	scanner := bufio.NewScanner(os.Stdin)
-	for scanner.Scan() {
-		input = append(input, scanner.Text())
-	}
+	input := utils.ReadPiped()
 
 	switch buffer {
 	case 1:

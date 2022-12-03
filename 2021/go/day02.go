@@ -1,19 +1,20 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
-func partOne(scanner *bufio.Scanner) {
+func partOne(input []string) {
 	var depth, horizontal int
 
-	for scanner.Scan() {
-		instruction := strings.Split(scanner.Text(), " ")
+	for _, line := range input {
+		instruction := strings.Split(line, " ")
 
 		distance, err := strconv.Atoi(instruction[1])
 		if err != nil {
@@ -33,11 +34,11 @@ func partOne(scanner *bufio.Scanner) {
 	fmt.Println("Depth:", depth, "Distance:", horizontal, "Product:", (depth * horizontal))
 }
 
-func partTwo(scanner *bufio.Scanner) {
+func partTwo(input []string) {
 	var depth, horizontal, aim int
 
-	for scanner.Scan() {
-		instruction := strings.Split(scanner.Text(), " ")
+	for _, line := range input {
+		instruction := strings.Split(line, " ")
 
 		distance, err := strconv.Atoi(instruction[1])
 		if err != nil {
@@ -66,10 +67,13 @@ func main() {
 			log.Fatal(("Could not convert arg to number: " + os.Args[1]))
 		}
 	}
+
+	input := utils.ReadPiped()
+
 	switch buffer {
 	case 1:
-		partOne(bufio.NewScanner(os.Stdin))
+		partOne(input)
 	case 2:
-		partTwo(bufio.NewScanner(os.Stdin))
+		partTwo(input)
 	}
 }

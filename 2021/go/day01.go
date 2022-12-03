@@ -1,20 +1,20 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
 	"os"
 	"strconv"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
-func countIncreaseOccurancesBuffer(scanner *bufio.Scanner, numToCount int) {
+func countIncreaseOccurancesBuffer(input []string, numToCount int) {
 	buffer := make([]int, numToCount)
 	idxToReplace := 0
 	var numIncreases, rowsVisited, prev int
 
-	for scanner.Scan() {
-		line := scanner.Text()
+	for _, line := range input {
 		rowsVisited++
 
 		current, err := strconv.Atoi(line)
@@ -46,10 +46,12 @@ func main() {
 		}
 	}
 
+	input := utils.ReadPiped()
+
 	switch buffer {
 	case 1:
-		countIncreaseOccurancesBuffer(bufio.NewScanner(os.Stdin), 1)
+		countIncreaseOccurancesBuffer(input, 1)
 	case 2:
-		countIncreaseOccurancesBuffer(bufio.NewScanner(os.Stdin), 3)
+		countIncreaseOccurancesBuffer(input, 3)
 	}
 }
