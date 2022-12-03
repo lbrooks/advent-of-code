@@ -4,7 +4,7 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 go_library(
     name = "stream_reader_go",
     srcs = ["stream_reader.go"],
-    importpath = "aoc/utils",
+    importpath = "github.com/lbrooks/advent-of-code/utils",
     visibility = ["//visibility:public"],
 )
 

@@ -1,10 +1,11 @@
 package main
 
 import (
-	"aoc/utils"
 	"fmt"
 	"sort"
 	"strconv"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
 func calculate(input []string, topN int) (max, total int) {

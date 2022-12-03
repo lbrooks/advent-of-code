@@ -1,8 +1,9 @@
 package main
 
 import (
-	"aoc/utils"
 	"fmt"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
 var priorities = map[rune]int{
@@ -68,7 +69,7 @@ func part1_duplicate_items(input []string) int {
 			counts[f] = 1
 		}
 
-		for _, s := range line[len(line)/2 : len(line)] {
+		for _, s := range line[len(line)/2:] {
 			if _, has := counts[s]; has {
 				score += priorities[s]
 				break

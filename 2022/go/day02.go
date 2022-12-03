@@ -1,9 +1,10 @@
 package main
 
 import (
-	"aoc/utils"
 	"fmt"
 	"strings"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
 func getWinner(play string) string {
