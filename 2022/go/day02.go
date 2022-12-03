@@ -122,6 +122,6 @@ func main() {
 		part2_points += part2_score(game[0], game[1])
 	}
 
-	fmt.Println("Part 1 Points:", part1_points)
-	fmt.Println("Part 2 Points:", part2_points)
+	fmt.Println("Part 1:", part1_points)
+	fmt.Println("Part 2:", part2_points)
 }

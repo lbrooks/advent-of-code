@@ -3,24 +3,11 @@ package main
 import (
 	"aoc/utils"
 	"fmt"
-	"log"
-	"os"
 	"sort"
 	"strconv"
 )
 
-func main() {
-	topN := 1
-	if len(os.Args) > 1 {
-		if v, err := strconv.Atoi(os.Args[1]); err != nil {
-			log.Fatal(("Could not convert arg to number: " + os.Args[1]))
-		} else {
-			topN = v
-		}
-	}
-
-	input := utils.ReadPiped()
-
+func calculate(input []string, topN int) (max, total int) {
 	maxCalories := make([]int, 0)
 	workingCalories := 0
 	for _, line := range input {
@@ -51,10 +38,21 @@ func main() {
 		maxCalories = maxCalories[0:topN]
 	}
 
-	fmt.Println("Max Calories:", maxCalories)
-	ttlCals := 0
-	for _, c := range maxCalories {
-		ttlCals += c
+	for _, v := range maxCalories {
+		if v > max {
+			max = v
+		}
+		total += v
 	}
-	fmt.Println("Total Calories:", ttlCals)
+	return
+}
+
+func main() {
+	input := utils.ReadPiped()
+
+	m1, t1 := calculate(input, 1)
+	fmt.Printf("Part 1: Max: %d; Total: %d\n", m1, t1)
+
+	m2, t2 := calculate(input, 3)
+	fmt.Printf("Part 2: Max: %d; Total: %d\n", m2, t2)
 }
