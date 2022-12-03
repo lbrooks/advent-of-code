@@ -5,25 +5,21 @@
 #include <string>
 #include <vector>
 
-namespace brooks
-{
-  namespace utils
-  {
+namespace brooks {
+namespace utils {
 
-    std::vector<std::string> read(std::string filename)
-    {
-      std::vector<std::string> input;
+std::vector<std::string> read(std::string filename) {
+  std::vector<std::string> input;
 
-      std::ifstream infile(filename);
+  std::ifstream infile(filename);
 
-      std::string line;
-      while (std::getline(infile, line))
-      {
-        input.push_back(line);
-      }
-
-      return input;
-    }
-
+  std::string line;
+  while (std::getline(infile, line)) {
+    input.push_back(line);
   }
+
+  return input;
 }
+
+}  // namespace utils
+}  // namespace brooks

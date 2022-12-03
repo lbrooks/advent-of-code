@@ -1,11 +1,12 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
 	"os"
 	"strconv"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
 type doubleKeyMap map[int]map[int]int
@@ -103,11 +104,7 @@ func main() {
 		}
 	}
 
-	input := make([]string, 0)
-	scanner := bufio.NewScanner(os.Stdin)
-	for scanner.Scan() {
-		input = append(input, scanner.Text())
-	}
+	input := utils.ReadPiped()
 
 	switch buffer {
 	case 1:
