@@ -3,11 +3,11 @@
 #include <vector>
 
 void part1() {
-  int counts [12] = {};
+  int counts[12] = {};
   int rowsVisited = 0;
 
   std::string line;
-  while (std::cin >> line){
+  while (std::cin >> line) {
     rowsVisited++;
 
     for (int i = 0; i < line.length(); i++) {
@@ -29,22 +29,18 @@ void part1() {
     }
   }
 
-  std::cout << std::endl <<
-    "Gamma: " << gamma <<
-    "\tEpsilon: " << epsilon <<
-    "\tProduct: " << (gamma * epsilon) <<
-    std::endl;
+  std::cout << std::endl
+            << "Gamma: " << gamma << "\tEpsilon: " << epsilon
+            << "\tProduct: " << (gamma * epsilon) << std::endl;
 }
 
-void part2() {
-  std::cout << "Not Yet Implemented" << std::endl;
-}
+void part2() { std::cout << "Not Yet Implemented" << std::endl; }
 
 int main(int argc, char** argv) {
   int buffer = 1;
-	if (argc > 1) {
+  if (argc > 1) {
     buffer = std::atoi(argv[1]);
-	}
+  }
 
   if (buffer == 1) {
     part1();
@@ -56,4 +52,3 @@ int main(int argc, char** argv) {
 
   return 0;
 }
-

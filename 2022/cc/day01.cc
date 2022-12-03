@@ -1,21 +1,18 @@
-#include "utils/file_reader.h"
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
 
-std::vector<int> largest(std::vector<std::string> input, int topN)
-{
+#include "utils/file_reader.h"
+
+std::vector<int> largest(std::vector<std::string> input, int topN) {
   std::vector<int> results;
 
   int working = 0;
-  for (auto l : input)
-  {
-    if (l == "")
-    {
+  for (auto l : input) {
+    if (l == "") {
       results.push_back(working);
       std::sort(results.begin(), results.end(), std::greater<int>());
-      while (results.size() > topN)
-      {
+      while (results.size() > topN) {
         results.pop_back();
       }
       working = 0;
@@ -26,18 +23,15 @@ std::vector<int> largest(std::vector<std::string> input, int topN)
   return results;
 }
 
-int sum(std::vector<int> input)
-{
+int sum(std::vector<int> input) {
   int total = 0;
-  for (auto l : input)
-  {
+  for (auto l : input) {
     total += l;
   }
   return total;
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
   auto input = brooks::utils::read(argv[1]);
 
   auto p1 = largest(input, 1);

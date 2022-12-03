@@ -21,11 +21,8 @@ void part1() {
     }
   }
 
-  std::cout <<
-    "Depth: " << depth <<
-    "\tDistance: " << horizontal <<
-    "\tProduct: " << (depth * horizontal) <<
-    std::endl;
+  std::cout << "Depth: " << depth << "\tDistance: " << horizontal
+            << "\tProduct: " << (depth * horizontal) << std::endl;
 }
 
 void part2() {
@@ -50,18 +47,15 @@ void part2() {
     }
   }
 
-  std::cout <<
-    "Depth: " << depth <<
-    "\tDistance: " << horizontal <<
-    "\tProduct: " << (depth * horizontal) <<
-    std::endl;
+  std::cout << "Depth: " << depth << "\tDistance: " << horizontal
+            << "\tProduct: " << (depth * horizontal) << std::endl;
 }
 
 int main(int argc, char** argv) {
   int buffer = 1;
-	if (argc > 1) {
+  if (argc > 1) {
     buffer = std::atoi(argv[1]);
-	}
+  }
 
   if (buffer == 1) {
     part1();
@@ -73,4 +67,3 @@ int main(int argc, char** argv) {
 
   return 0;
 }
-
