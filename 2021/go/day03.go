@@ -2,9 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"os"
-	"strconv"
 	"strings"
 
 	"github.com/lbrooks/advent-of-code/utils"
@@ -36,7 +33,7 @@ func partOne(records [][]string) {
 		}
 	}
 
-	fmt.Printf("Gamma: %d\tEpsilon %d\tProduct: %d\n", gamma, epsilon, (gamma * epsilon))
+	fmt.Printf("Part 1: %d\n", (gamma * epsilon))
 }
 
 func partTwo(records [][]string) {
@@ -89,28 +86,16 @@ func partTwo(records [][]string) {
 		}
 	}
 
-	fmt.Printf("Oxygen: %d\tCO2: %d\tProduct: %d\n", oxy, co2, oxy*co2)
+	fmt.Printf("Part 2: %d\n", oxy*co2)
 }
 
 func main() {
-	buffer := 1
-	var err error
-	if len(os.Args) > 1 {
-		if buffer, err = strconv.Atoi(os.Args[1]); err != nil {
-			log.Fatal(("Could not convert arg to number: " + os.Args[1]))
-		}
-	}
-
 	records := make([][]string, 0)
 	input := utils.ReadPiped()
 	for _, l := range input {
 		records = append(records, strings.Split(l, ""))
 	}
 
-	switch buffer {
-	case 1:
-		partOne(records)
-	case 2:
-		partTwo(records)
-	}
+	partOne(records)
+	partTwo(records)
 }

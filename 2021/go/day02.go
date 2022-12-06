@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
 	"strconv"
 	"strings"
 
@@ -31,7 +30,7 @@ func partOne(input []string) {
 		}
 	}
 
-	fmt.Println("Depth:", depth, "Distance:", horizontal, "Product:", (depth * horizontal))
+	fmt.Printf("Part 1: %d\n", (depth * horizontal))
 }
 
 func partTwo(input []string) {
@@ -56,24 +55,12 @@ func partTwo(input []string) {
 		}
 	}
 
-	fmt.Println("Depth:", depth, "Distance:", horizontal, "Product:", (depth * horizontal))
+	fmt.Printf("Part 2: %d\n", (depth * horizontal))
 }
 
 func main() {
-	buffer := 1
-	var err error
-	if len(os.Args) > 1 {
-		if buffer, err = strconv.Atoi(os.Args[1]); err != nil {
-			log.Fatal(("Could not convert arg to number: " + os.Args[1]))
-		}
-	}
-
 	input := utils.ReadPiped()
 
-	switch buffer {
-	case 1:
-		partOne(input)
-	case 2:
-		partTwo(input)
-	}
+	partOne(input)
+	partTwo(input)
 }
