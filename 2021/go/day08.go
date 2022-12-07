@@ -3,9 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
-	"strconv"
 	"strings"
 )
 
@@ -69,7 +67,7 @@ func determineNumber(signal string) []int {
 	return []int{}
 }
 
-func playOne(in []codeInput) {
+func playOne(in []codeInput) int {
 	var occ int
 	for _, i := range in {
 		for _, o := range i.outputs {
@@ -79,7 +77,7 @@ func playOne(in []codeInput) {
 			}
 		}
 	}
-	fmt.Printf("Num Occ: %d\n", occ)
+	return occ
 }
 
 func NumOfSetBits(n uint8) uint8 {
@@ -91,7 +89,7 @@ func NumOfSetBits(n uint8) uint8 {
 	return count
 }
 
-func playTwo(allInputs []codeInput) {
+func playTwo(allInputs []codeInput) int {
 	sum := 0
 
 	for _, log := range allInputs {
@@ -146,7 +144,7 @@ func playTwo(allInputs []codeInput) {
 		sum += val
 	}
 
-	fmt.Printf("Final Sum: %d\n", sum)
+	return sum
 }
 
 func readInput() []codeInput {
@@ -163,20 +161,8 @@ func readInput() []codeInput {
 }
 
 func main() {
-	buffer := 1
-	var err error
-	if len(os.Args) > 1 {
-		if buffer, err = strconv.Atoi(os.Args[1]); err != nil {
-			log.Fatal(("Could not convert arg to number: " + os.Args[1]))
-		}
-	}
-
 	allEntries := readInput()
 
-	switch buffer {
-	case 1:
-		playOne(allEntries)
-	case 2:
-		playTwo(allEntries)
-	}
+	fmt.Printf("Part 1: %d\n", playOne(allEntries))
+	fmt.Printf("Part 2: %d\n", playTwo(allEntries))
 }

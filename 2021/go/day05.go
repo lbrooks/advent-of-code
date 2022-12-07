@@ -1,12 +1,11 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
-	"os"
 	"strconv"
 	"strings"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
 type coord struct {
@@ -92,10 +91,10 @@ func (l *line) isStraight() bool {
 	return l.isHorizontal() || l.isVertical()
 }
 
-func getLines(scanner *bufio.Scanner, onlyStraight bool) (lines []*line, maxX, maxY float64) {
+func getLines(input []string, onlyStraight bool) (lines []*line, maxX, maxY float64) {
 	lines = make([]*line, 0)
-	for scanner.Scan() {
-		l := newLine(scanner.Text())
+	for _, line := range input {
+		l := newLine(line)
 
 		if onlyStraight && !l.isStraight() {
 			continue
@@ -120,8 +119,8 @@ func getLines(scanner *bufio.Scanner, onlyStraight bool) (lines []*line, maxX, m
 	return
 }
 
-func partOne(scanner *bufio.Scanner) {
-	lines, maxX, maxY := getLines(scanner, true)
+func partOne(input []string) int {
+	lines, maxX, maxY := getLines(input, true)
 
 	traffic := 0
 	for x := 0.0; x <= maxX; x++ {
@@ -138,11 +137,11 @@ func partOne(scanner *bufio.Scanner) {
 		}
 	}
 
-	fmt.Printf("Score: %d\n", traffic)
+	return traffic
 }
 
-func partTwo(scanner *bufio.Scanner) {
-	lines, maxX, maxY := getLines(scanner, false)
+func partTwo(input []string) int {
+	lines, maxX, maxY := getLines(input, false)
 
 	traffic := 0
 	for x := 0.0; x <= maxX; x++ {
@@ -159,21 +158,12 @@ func partTwo(scanner *bufio.Scanner) {
 		}
 	}
 
-	fmt.Printf("Score: %d\n", traffic)
+	return traffic
 }
 
 func main() {
-	buffer := 1
-	var err error
-	if len(os.Args) > 1 {
-		if buffer, err = strconv.Atoi(os.Args[1]); err != nil {
-			log.Fatal(("Could not convert arg to number: " + os.Args[1]))
-		}
-	}
-	switch buffer {
-	case 1:
-		partOne(bufio.NewScanner(os.Stdin))
-	case 2:
-		partTwo(bufio.NewScanner(os.Stdin))
-	}
+	input := utils.ReadPiped()
+
+	fmt.Printf("Part 1: %d\n", partOne(input))
+	fmt.Printf("Part 2: %d\n", partTwo(input))
 }

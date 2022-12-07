@@ -1,12 +1,11 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
-	"os"
 	"strconv"
 	"strings"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
 type bingo struct {
@@ -123,34 +122,35 @@ func (b *bingo) getUnmarked() string {
 	return strings.Join(vals, " + ")
 }
 
-func partOne(scanner *bufio.Scanner) {
+func partOne(input []string) int {
 	numbers := make([]int, 0)
 
-	scanner.Scan()
-	for _, v := range strings.Split(scanner.Text(), ",") {
+	idx := 0
+	for _, v := range strings.Split(input[0], ",") {
 		num := strings.TrimSpace(v)
 		if num != "" {
 			i, _ := strconv.Atoi(num)
 			numbers = append(numbers, i)
 		}
 	}
+	idx++
 
 	roundWin := -1
 	value := -1
-
-	for scanner.Scan() {
+	for idx < len(input) {
 		board := make([]string, 5)
 
-		scanner.Scan()
-		board[0] = scanner.Text()
-		scanner.Scan()
-		board[1] = scanner.Text()
-		scanner.Scan()
-		board[2] = scanner.Text()
-		scanner.Scan()
-		board[3] = scanner.Text()
-		scanner.Scan()
-		board[4] = scanner.Text()
+		idx++
+		board[0] = input[idx]
+		idx++
+		board[1] = input[idx]
+		idx++
+		board[2] = input[idx]
+		idx++
+		board[3] = input[idx]
+		idx++
+		board[4] = input[idx]
+		idx++
 
 		b := newBingo(board)
 		for i, n := range numbers {
@@ -164,33 +164,35 @@ func partOne(scanner *bufio.Scanner) {
 		}
 	}
 
-	fmt.Println("Value:", value)
+	return value
 }
 
-func partTwo(scanner *bufio.Scanner) {
+func partTwo(input []string) int {
 	numbers := make([]int, 0)
 
-	scanner.Scan()
-	for _, v := range strings.Split(scanner.Text(), ",") {
+	idx := 0
+	for _, v := range strings.Split(input[idx], ",") {
 		i, _ := strconv.Atoi(v)
 		numbers = append(numbers, i)
 	}
+	idx++
 
 	roundWin := -1
 	value := -1
-	for scanner.Scan() {
+	for idx < len(input) {
 		board := make([]string, 5)
 
-		scanner.Scan()
-		board[0] = scanner.Text()
-		scanner.Scan()
-		board[1] = scanner.Text()
-		scanner.Scan()
-		board[2] = scanner.Text()
-		scanner.Scan()
-		board[3] = scanner.Text()
-		scanner.Scan()
-		board[4] = scanner.Text()
+		idx++
+		board[0] = input[idx]
+		idx++
+		board[1] = input[idx]
+		idx++
+		board[2] = input[idx]
+		idx++
+		board[3] = input[idx]
+		idx++
+		board[4] = input[idx]
+		idx++
 
 		b := newBingo(board)
 		for i, n := range numbers {
@@ -204,21 +206,12 @@ func partTwo(scanner *bufio.Scanner) {
 		}
 	}
 
-	fmt.Println("Value:", value)
+	return value
 }
 
 func main() {
-	buffer := 1
-	var err error
-	if len(os.Args) > 1 {
-		if buffer, err = strconv.Atoi(os.Args[1]); err != nil {
-			log.Fatal(("Could not convert arg to number: " + os.Args[1]))
-		}
-	}
-	switch buffer {
-	case 1:
-		partOne(bufio.NewScanner(os.Stdin))
-	case 2:
-		partTwo(bufio.NewScanner(os.Stdin))
-	}
+	input := utils.ReadPiped()
+
+	fmt.Printf("Part 1: %d\n", partOne(input))
+	fmt.Printf("Part 2: %d\n", partTwo(input))
 }

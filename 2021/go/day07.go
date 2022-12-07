@@ -1,21 +1,20 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
-	"os"
 	"strconv"
 	"strings"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
-func playOne(positions []int) {
+func playOne(positions []int) int {
 	counts := make(map[int]int)
 	for _, v := range positions {
 		counts[v] = counts[v] + 1
 	}
 
-	atPos := 0
+	// atPos := 0
 	minFuel := -1
 
 	for endPos := range counts {
@@ -29,11 +28,11 @@ func playOne(positions []int) {
 		}
 		if minFuel < 0 || fuel < minFuel {
 			minFuel = fuel
-			atPos = endPos
+			// atPos = endPos
 		}
 	}
 
-	fmt.Printf("Fuel Used: %d to come to Position: %d\n", minFuel, atPos)
+	return minFuel
 }
 
 var sumCache map[int]int
@@ -54,7 +53,7 @@ func getFuelSum(distance int) int {
 	return sumCache[d]
 }
 
-func playTwo(positions []int) {
+func playTwo(positions []int) int {
 	maxVal := 0
 	counts := make(map[int]int)
 	for _, v := range positions {
@@ -64,7 +63,7 @@ func playTwo(positions []int) {
 		}
 	}
 
-	atPos := 0
+	// atPos := 0
 	minFuel := -1
 
 	for endPos := 0; endPos <= maxVal; endPos++ {
@@ -73,37 +72,23 @@ func playTwo(positions []int) {
 			fuel += getFuelSum(endPos-pos) * occ
 		}
 		if minFuel < 0 || fuel < minFuel {
-			atPos = endPos
+			// atPos = endPos
 			minFuel = fuel
 		}
 	}
 
-	fmt.Printf("Fuel Used: %d to come to Position: %d\n", minFuel, atPos)
+	return minFuel
 }
 
 func main() {
 	sumCache = make(map[int]int)
 
-	buffer := 1
-	var err error
-	if len(os.Args) > 1 {
-		if buffer, err = strconv.Atoi(os.Args[1]); err != nil {
-			log.Fatal(("Could not convert arg to number: " + os.Args[1]))
-		}
-	}
-
 	positions := make([]int, 0)
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-	for _, v := range strings.Split(scanner.Text(), ",") {
+	for _, v := range strings.Split(utils.ReadPiped()[0], ",") {
 		num, _ := strconv.Atoi(v)
 		positions = append(positions, num)
 	}
 
-	switch buffer {
-	case 1:
-		playOne(positions)
-	case 2:
-		playTwo(positions)
-	}
+	fmt.Printf("Part 1: %d\n", playOne(positions))
+	fmt.Printf("Part 2: %d\n", playTwo(positions))
 }

@@ -1,12 +1,11 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
-	"os"
 	"strconv"
 	"strings"
+
+	"github.com/lbrooks/advent-of-code/utils"
 )
 
 func playRound(fish map[int]int) map[int]int {
@@ -22,11 +21,10 @@ func playRound(fish map[int]int) map[int]int {
 	return nextRound
 }
 
-func spawn(scanner *bufio.Scanner, forRounds int) {
+func spawn(input string, forRounds int) int {
 	fish := make(map[int]int, 0)
 
-	scanner.Scan()
-	for _, v := range strings.Split(scanner.Text(), ",") {
+	for _, v := range strings.Split(input, ",") {
 		num, _ := strconv.Atoi(v)
 		fish[num] = fish[num] + 1
 	}
@@ -40,21 +38,12 @@ func spawn(scanner *bufio.Scanner, forRounds int) {
 		sum += v
 	}
 
-	fmt.Println("Fish Count: ", sum)
+	return sum
 }
 
 func main() {
-	buffer := 1
-	var err error
-	if len(os.Args) > 1 {
-		if buffer, err = strconv.Atoi(os.Args[1]); err != nil {
-			log.Fatal(("Could not convert arg to number: " + os.Args[1]))
-		}
-	}
-	switch buffer {
-	case 1:
-		spawn(bufio.NewScanner(os.Stdin), 80)
-	case 2:
-		spawn(bufio.NewScanner(os.Stdin), 256)
-	}
+	input := utils.ReadPiped()
+
+	fmt.Printf("Part 1: %d\n", spawn(input[0], 80))
+	fmt.Printf("Part 2: %d\n", spawn(input[0], 256))
 }
