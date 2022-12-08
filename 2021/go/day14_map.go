@@ -1,9 +1,7 @@
 package main
 
 import (
-	"log"
-	"os"
-	"strconv"
+	"fmt"
 	"strings"
 
 	"github.com/lbrooks/advent-of-code/utils"
@@ -13,6 +11,8 @@ var (
 	mappings map[string]string
 	entries  map[string]int
 )
+
+// FIXME: Off by one to low??
 
 func round() {
 	newRecords := make(map[string]int)
@@ -70,24 +70,12 @@ func play(input []string, iterations int) {
 		}
 	}
 
-	log.Printf("Max: %d\tMin: %d\tDiff: %d\n", max, min, (max-min)/2)
+	fmt.Printf("Max: %d\tMin: %d\tDiff: %d\n", max, min, (max-min)/2)
 }
 
 func main() {
-	buffer := 1
-	var err error
-	if len(os.Args) > 1 {
-		if buffer, err = strconv.Atoi(os.Args[1]); err != nil {
-			log.Fatal(("Could not convert arg to number: " + os.Args[1]))
-		}
-	}
-
 	input := utils.ReadPiped()
 
-	switch buffer {
-	case 1:
-		play(input, 10)
-	case 2:
-		play(input, 40)
-	}
+	play(input, 10)
+	play(input, 40)
 }

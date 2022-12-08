@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"math"
-	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -187,20 +186,8 @@ func playTwo(input []string) {
 }
 
 func main() {
-	buffer := 1
-	var err error
-	if len(os.Args) > 1 {
-		if buffer, err = strconv.Atoi(os.Args[1]); err != nil {
-			log.Fatal(("Could not convert arg to number: " + os.Args[1]))
-		}
-	}
-
 	input := utils.ReadPiped()
 
-	switch buffer {
-	case 1:
-		playOne(input)
-	case 2:
-		playTwo(input)
-	}
+	playOne(input)
+	playTwo(input)
 }

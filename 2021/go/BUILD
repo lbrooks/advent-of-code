@@ -1,4 +1,4 @@
-load("@io_bazel_rules_go//go:def.bzl", "go_binary")
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_test")
 
 go_binary(
     name = "day01",
@@ -117,5 +117,20 @@ go_binary(
 go_binary(
     name = "day17",
     srcs = ["day17.go"],
+    deps = ["//utils:stream_reader_go"],
+)
+
+go_binary(
+    name = "day18",
+    srcs = ["day18.go"],
+    deps = ["//utils:stream_reader_go"],
+)
+
+go_test(
+    name = "day18_test",
+    srcs = [
+        "day18.go",
+        "day18_test.go",
+    ],
     deps = ["//utils:stream_reader_go"],
 )

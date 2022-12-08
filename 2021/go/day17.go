@@ -2,9 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"os"
-	"strconv"
 
 	"github.com/lbrooks/advent-of-code/utils"
 )
@@ -88,14 +85,6 @@ func playTwo(input BoundingBox) {
 }
 
 func main() {
-	buffer := 1
-	var err error
-	if len(os.Args) > 1 {
-		if buffer, err = strconv.Atoi(os.Args[1]); err != nil {
-			log.Fatal(("Could not convert arg to number: " + os.Args[1]))
-		}
-	}
-
 	input := utils.ReadPiped()
 
 	var xmin, xmax, ymin, ymax int
@@ -104,12 +93,6 @@ func main() {
 		panic(fmt.Sprint("expected 4 values, found:", count, "\nError: \n", err))
 	}
 
-	target := BoundingBox{xmin, xmax, ymin, ymax}
-
-	switch buffer {
-	case 1:
-		playOne(target)
-	case 2:
-		playTwo(target)
-	}
+	playOne(BoundingBox{xmin, xmax, ymin, ymax})
+	playTwo(BoundingBox{xmin, xmax, ymin, ymax})
 }

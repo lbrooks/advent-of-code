@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -199,14 +197,9 @@ func createGrid(input []string) *grid {
 	return newGrid(board)
 }
 
-func playOne(input []string) {
+func playOne(input []string) int {
 	g := createGrid(input)
-
-	sum := g.markLows()
-
-	fmt.Print(g)
-
-	fmt.Printf("Sum Lows: %d\n", sum)
+	return g.markLows()
 }
 
 func (g *grid) basinArea(r, c int) int {
@@ -227,7 +220,7 @@ func (g *grid) basinArea(r, c int) int {
 	return 1 + g.basinArea(r+1, c) + g.basinArea(r-1, c) + g.basinArea(r, c-1) + g.basinArea(r, c+1)
 }
 
-func playTwo(input []string) {
+func playTwo(input []string) int {
 	g := createGrid(input)
 
 	basins := make([]int, 0)
@@ -249,24 +242,12 @@ func playTwo(input []string) {
 		ans *= basins[i]
 	}
 
-	fmt.Printf("Answer: %d\n", ans)
+	return ans
 }
 
 func main() {
-	buffer := 1
-	var err error
-	if len(os.Args) > 1 {
-		if buffer, err = strconv.Atoi(os.Args[1]); err != nil {
-			log.Fatal(("Could not convert arg to number: " + os.Args[1]))
-		}
-	}
-
 	input := utils.ReadPiped()
 
-	switch buffer {
-	case 1:
-		playOne(input)
-	case 2:
-		playTwo(input)
-	}
+	fmt.Printf("Part 1: %d\n", playOne(input))
+	fmt.Printf("Part 2: %d\n", playTwo(input))
 }
