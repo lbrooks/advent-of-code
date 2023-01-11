@@ -9,9 +9,23 @@ http_archive(
     ],
 )
 
-load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
+# Download Gazelle.
+http_archive(
+    name = "bazel_gazelle",
+    sha256 = "448e37e0dbf61d6fa8f00aaa12d191745e14f07c31cabfa731f0c8e8a4f41b97",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/bazel-gazelle/releases/download/v0.28.0/bazel-gazelle-v0.28.0.tar.gz",
+        "https://github.com/bazelbuild/bazel-gazelle/releases/download/v0.28.0/bazel-gazelle-v0.28.0.tar.gz",
+    ],
+)
 
+# Load macros and repository rules.
+load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
+
+# Declare indirect dependencies and register toolchains.
 go_rules_dependencies()
 
-go_register_toolchains(version = "1.17.1")
+go_register_toolchains(version = "1.19.3")
 
+gazelle_dependencies()
