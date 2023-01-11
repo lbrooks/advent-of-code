@@ -59,3 +59,9 @@ go_binary(
     srcs = ["day10.go"],
     deps = ["//utils:stream_reader_go"],
 )
+
+go_binary(
+    name = "day11",
+    srcs = ["day11.go"],
+    deps = ["//utils:stream_reader_go"],
+)
