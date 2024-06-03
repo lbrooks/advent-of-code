@@ -1,5 +1,8 @@
+bazel-advent-of-code
 bazel-bin
 bazel-out
 bazel-repo
 bazel-testlogs
 .vscode/
+.DS_Store
+

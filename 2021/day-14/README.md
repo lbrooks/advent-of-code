@@ -1,1 +1,0 @@
-The slice and linked versions of this solution do not compute the part 2 solution well. The map algo completes it quickly.

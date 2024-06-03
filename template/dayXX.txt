@@ -1,0 +1,4 @@
+Place input in this file
+then pipe into process
+eg:
+cat 2022/day01_input.txt | bazel run //2022:day01 -- 3
